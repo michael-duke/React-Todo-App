@@ -1,5 +1,5 @@
 import React from 'react';
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 import Header from './Header';
 import InputTodo from './InputTodo';
 import TodosList from './TodosList';
@@ -46,10 +46,10 @@ class TodoContainer extends React.Component {
       completed: false,
     };
 
-    this.setState(({todos}) => {
+    this.setState(({ todos }) => {
       return {
-        todos: [...todos, newTodo]
-      }
+        todos: [...todos, newTodo],
+      };
     });
   };
 
@@ -63,14 +63,16 @@ class TodoContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header />
-        <InputTodo addTodo={this.addTodo} />
-        <TodosList
-          todos={this.state.todos}
-          handleChange={this.handleChange}
-          deleteTodo={this.delTodo}
-        />
+      <div className="container">
+        <div className="inner">
+          <Header />
+          <InputTodo addTodo={this.addTodo} />
+          <TodosList
+            todos={this.state.todos}
+            handleChange={this.handleChange}
+            deleteTodo={this.delTodo}
+          />
+        </div>
       </div>
     );
   }
