@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
-
+import { PlusCircleIcon } from '@heroicons/react/24/outline';
 const InputTodo = (props) => {
   const [inputText, setInputText] = useState({
-    title: '',  
+    title: '',
   });
 
   const onChange = (e) => {
-    const { target:{ name, value } } = e
-    
+    const { target: { name, value }, } = e;
+
     setInputText({
       ...inputText,
-      [name]:value
-    })
+      [name]: value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const {title} = inputText;
+    const { title } = inputText;
 
     if (title.trim()) {
       props.addTodo(title);
       setInputText({
-        title:'',
-      })
+        title: '',
+      });
     } else alert('Kindly write a Todo');
     e.stopPropagation();
   };
@@ -37,7 +37,9 @@ const InputTodo = (props) => {
         name="title"
         onChange={onChange}
       />
-      <button className="input-submit">Submit</button>
+      <button className="input-submit">
+        <PlusCircleIcon className="h-6 w-6 stroke-blue-500" />
+      </button>
     </form>
   );
 };

@@ -8,8 +8,8 @@ function TodoContainer() {
   const [todos, setTodos] = useState(getInitialTodos());
 
   const handleChange = (todoId) => {
-    setTodos((prevState) => ({
-      todos: prevState.todos.map((todo) => {
+    setTodos((prevState) =>
+      prevState.map((todo) => {
         const { id, completed } = todo;
         if (id === todoId) {
           return {
@@ -18,8 +18,8 @@ function TodoContainer() {
           };
         }
         return todo;
-      }),
-    }));
+      })
+    );
   };
 
   const addTodo = (title) => {
@@ -53,9 +53,9 @@ function TodoContainer() {
 
   function getInitialTodos() {
     // getting stored items
-    const temp = localStorage.getItem("todos")
-    const savedTodos = JSON.parse(temp)
-    return savedTodos || []
+    const temp = localStorage.getItem('todos');
+    const savedTodos = JSON.parse(temp);
+    return savedTodos || [];
   }
 
   useEffect(() => {
