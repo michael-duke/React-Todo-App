@@ -1,9 +1,8 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 
-class TodosList extends React.Component {
-  render() {
-    const { todos, handleChange, deleteTodo, editTodo } = this.props;
+const TodosList = (props)=> {
+    const { todos, handleChange, deleteTodo, editTodo } = props;
     return (
       <ul style={{ overflowY: 'scroll', maxHeight: '250px' }}>
         {todos.map((todo) => (
@@ -17,7 +16,7 @@ class TodosList extends React.Component {
         ))}
       </ul>
     );
-  }
+  
 }
 
 export default TodosList;
