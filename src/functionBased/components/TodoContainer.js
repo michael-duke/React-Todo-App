@@ -5,27 +5,32 @@ import InputTodo from './InputTodo';
 import TodosList from './TodosList';
 
 function TodoContainer() {
+  function getInitialTodos() {
+    // getting stored items
+    const temp = localStorage.getItem('todos');
+    const savedTodos = JSON.parse(temp);
+    return savedTodos || [];
+  }
+
   const [todos, setTodos] = useState(getInitialTodos());
 
   const handleChange = (todoId) => {
-    setTodos((prevState) =>
-      prevState.map((todo) => {
-        const { id, completed } = todo;
-        if (id === todoId) {
-          return {
-            ...todo,
-            completed: !completed,
-          };
-        }
-        return todo;
-      })
-    );
+    setTodos((prevState) => prevState.map((todo) => {
+      const { id, completed } = todo;
+      if (id === todoId) {
+        return {
+          ...todo,
+          completed: !completed,
+        };
+      }
+      return todo;
+    }));
   };
 
   const addTodo = (title) => {
     const newTodo = {
       id: uuidv4(),
-      title: title,
+      title,
       completed: false,
     };
 
@@ -47,16 +52,9 @@ function TodoContainer() {
           };
         }
         return todo;
-      })
+      }),
     );
   };
-
-  function getInitialTodos() {
-    // getting stored items
-    const temp = localStorage.getItem('todos');
-    const savedTodos = JSON.parse(temp);
-    return savedTodos || [];
-  }
 
   useEffect(() => {
     // storing todos items

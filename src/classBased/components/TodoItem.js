@@ -1,9 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './TodoItem.module.css';
+
 class TodoItem extends React.Component {
-  state = {
-    editing: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = { editing: false };
+  }
+
+  componentWillUnmount() {
+    return console.log('Cleaning up...');
+  }
 
   handleEditing = () => {
     this.setState({
@@ -17,14 +24,10 @@ class TodoItem extends React.Component {
     }
   };
 
-  handleEditingBlur = () =>{
+  handleEditingBlur = () => {
     this.setState({ editing: false });
-  }
+  };
 
-  componentWillUnmount() {
-    console.log("Cleaning up...")
-  }
-  
   render() {
     const {
       todo: { id, title, completed },
@@ -32,6 +35,9 @@ class TodoItem extends React.Component {
       deleteTodo,
       editTodo,
     } = this.props;
+
+    const { editing } = this.state;
+
     const completedStyle = {
       fontStyle: 'italic',
       color: '#595959',
@@ -39,10 +45,10 @@ class TodoItem extends React.Component {
       textDecoration: 'line-through',
     };
 
-    let viewMode = {};
-    let editMode = {};
+    const viewMode = {};
+    const editMode = {};
 
-    if (this.state.editing) {
+    if (editing) {
       viewMode.display = 'none';
     } else {
       editMode.display = 'none';
@@ -56,7 +62,9 @@ class TodoItem extends React.Component {
             checked={completed}
             onChange={() => handleChange(id)}
           />
-          <button onClick={() => deleteTodo(id)}>Delete</button>
+          <button type="button" onClick={() => deleteTodo(id)}>
+            Delete
+          </button>
           <span style={completed ? completedStyle : null}>{title}</span>
         </div>
         <input
@@ -64,7 +72,6 @@ class TodoItem extends React.Component {
           className={styles.textInput}
           style={editMode}
           value={title}
-          autoFocus={true}
           onChange={(e) => {
             const {
               target: { value: updatedTitle },
@@ -78,5 +85,12 @@ class TodoItem extends React.Component {
     );
   }
 }
+
+TodoItem.propTypes = {
+  todo: PropTypes.shape.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired,
+};
 
 export default TodoItem;

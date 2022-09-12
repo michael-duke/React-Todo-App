@@ -8,7 +8,7 @@ const Header = () => {
   return (
     <header>
       <h1 style={{ textAlign: 'center' }}>
-        <img style={headerImage} src={header} alt="todo-header"  />
+        <img style={headerImage} src={header} alt="todo-header" />
       </h1>
     </header>
   );

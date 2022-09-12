@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
+
 const InputTodo = (props) => {
   const [inputText, setInputText] = useState({
     title: '',
   });
-
+  const { addTodo } = props;
   const onChange = (e) => {
-    const { target: { name, value }, } = e;
+    const {
+      target: { name, value },
+    } = e;
 
     setInputText({
       ...inputText,
@@ -19,7 +23,7 @@ const InputTodo = (props) => {
     const { title } = inputText;
 
     if (title.trim()) {
-      props.addTodo(title);
+      addTodo(title);
       setInputText({
         title: '',
       });
@@ -37,11 +41,13 @@ const InputTodo = (props) => {
         name="title"
         onChange={onChange}
       />
-      <button className="input-submit">
+      <button type="button" className="input-submit">
         <PlusCircleIcon className="h-6 w-6 stroke-blue-500" />
       </button>
     </form>
   );
 };
+
+InputTodo.propTypes = { addTodo: PropTypes.func.isRequired };
 
 export default InputTodo;

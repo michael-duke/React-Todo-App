@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { MinusCircleIcon } from '@heroicons/react/24/outline';
 import styles from './TodoItem.module.css';
 
@@ -33,8 +34,8 @@ const TodoItem = (props) => {
     textDecoration: 'line-through',
   };
 
-  let viewMode = {};
-  let editMode = {};
+  const viewMode = {};
+  const editMode = {};
 
   if (editing) {
     viewMode.display = 'none';
@@ -42,11 +43,12 @@ const TodoItem = (props) => {
     editMode.display = 'none';
   }
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       console.log('Cleaning up...');
-    };
-  }, []);
+    },
+    [],
+  );
 
   return (
     <li className={styles.item}>
@@ -57,7 +59,11 @@ const TodoItem = (props) => {
           checked={completed}
           onChange={() => handleChange(id)}
         />
-        <button onClick={() => deleteTodo(id)} className="float-right mr-2">
+        <button
+          type="button"
+          onClick={() => deleteTodo(id)}
+          className="float-right mr-2"
+        >
           <MinusCircleIcon className="h-6 w-6" />
         </button>
         <span style={completed ? completedStyle : null}>{title}</span>
@@ -67,7 +73,6 @@ const TodoItem = (props) => {
         className={styles.textInput}
         style={editMode}
         value={title}
-        autoFocus={true}
         onChange={(e) => {
           const {
             target: { value: updatedTitle },
@@ -81,4 +86,10 @@ const TodoItem = (props) => {
   );
 };
 
+TodoItem.propTypes = {
+  todo: PropTypes.shape.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  editTodo: PropTypes.func.isRequired,
+};
 export default TodoItem;
