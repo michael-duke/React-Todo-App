@@ -72,7 +72,7 @@ function TodoContainer() {
       <Routes>
         <Route
           exact
-          path="/"
+          path="/React-Todo-App"
           element={(
             <div className="container">
               <div className="inner">
@@ -88,8 +88,8 @@ function TodoContainer() {
             </div>
           )}
         />
-        <Route path="/about/*" element={<About />} />
-        <Route path="*" element={<NotMatch />} />
+        <Route path="/React-Todo-App/about/*" element={<About />} />
+        <Route path="/React-Todo-App/*" element={<NotMatch />} />
       </Routes>
     </>
   );

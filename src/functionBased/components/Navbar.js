@@ -5,12 +5,12 @@ const Navbar = () => {
   const links = [
     {
       id: 1,
-      path: '/',
+      path: '/React-Todo-App/',
       text: 'Home',
     },
     {
       id: 2,
-      path: '/about',
+      path: '/React-Todo-App/about',
       text: 'About',
     },
   ];
@@ -22,8 +22,8 @@ const Navbar = () => {
         {links.map((link) => (
           <li key={link.id}>
             <NavLink
+              exact
               to={link.path}
-              exact="true"
               className={({ isActive }) => (isActive ? activeClassName : undefined)}
             >
               {link.text}

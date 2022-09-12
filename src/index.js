@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 // component file
-import TodoContainer from './classBased/components/TodoContainer';
+import TodoContainer from './functionBased/components/TodoContainer';
 // stylesheet
 import './functionBased/App.css';
 import 'tw-elements';
