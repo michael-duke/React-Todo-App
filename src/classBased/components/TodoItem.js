@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { MinusCircleIcon } from '@heroicons/react/24/outline';
 import styles from './TodoItem.module.css';
 
 class TodoItem extends React.Component {
@@ -62,8 +63,12 @@ class TodoItem extends React.Component {
             checked={completed}
             onChange={() => handleChange(id)}
           />
-          <button type="button" onClick={() => deleteTodo(id)}>
-            Delete
+          <button
+            type="button"
+            onClick={() => deleteTodo(id)}
+            className="float-right mr-2"
+          >
+            <MinusCircleIcon className="h-6 w-6" />
           </button>
           <span style={completed ? completedStyle : null}>{title}</span>
         </div>
@@ -87,7 +92,11 @@ class TodoItem extends React.Component {
 }
 
 TodoItem.propTypes = {
-  todo: PropTypes.shape.isRequired,
+  todo: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    completed: PropTypes.bool,
+  }).isRequired,
   handleChange: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
   editTodo: PropTypes.func.isRequired,

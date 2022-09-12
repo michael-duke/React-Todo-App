@@ -41,7 +41,7 @@ const InputTodo = (props) => {
         name="title"
         onChange={onChange}
       />
-      <button type="button" className="input-submit">
+      <button type="submit" className="input-submit">
         <PlusCircleIcon className="h-6 w-6 stroke-blue-500" />
       </button>
     </form>

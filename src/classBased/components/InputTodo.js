@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { PlusCircleIcon } from '@heroicons/react/24/outline';
 
 class InputTodo extends React.Component {
   constructor(props) {
@@ -43,8 +44,8 @@ class InputTodo extends React.Component {
           name="title"
           onChange={this.onChange}
         />
-        <button type="button" className="input-submit">
-          Submit
+        <button type="submit" className="input-submit">
+          <PlusCircleIcon className="h-6 w-6 stroke-blue-500" />
         </button>
       </form>
     );

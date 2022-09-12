@@ -87,7 +87,11 @@ const TodoItem = (props) => {
 };
 
 TodoItem.propTypes = {
-  todo: PropTypes.shape.isRequired,
+  todo: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    completed: PropTypes.bool,
+  }).isRequired,
   handleChange: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
   editTodo: PropTypes.func.isRequired,

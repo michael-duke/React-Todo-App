@@ -1,17 +1,23 @@
 import React from 'react';
-import header from '../assets/app-header.jpg';
+import header from '../../assets/app-header.jpg';
 
-const Header = () => {
-  const headerImage = {
-    width: '400px',
-  };
-  return (
-    <header>
-      <h1 style={{ textAlign: 'center' }}>
-        <img style={headerImage} src={header} alt="todo-header" />
-      </h1>
-    </header>
-  );
-};
+class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <header>
+        <img
+          className="mx-auto w-[400px] mb-2"
+          src={header}
+          alt="todo-header"
+        />
+      </header>
+    );
+  }
+}
 
 export default Header;
